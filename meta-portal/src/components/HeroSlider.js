@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'; // Import the axios library
+import { Box, Button , CircularProgress, TextareaAutosize } from "@mui/material";
 
 const HeroSlider = () => {
   // Hero slider
@@ -123,30 +124,39 @@ const HeroSlider = () => {
 
   const [TextAreaValue , setTextAreaValue] = useState();
   const [result, setResult] = useState();
-  
-  const API_ENDPOINT = "https://stablediffusionapi.com/api/v3/text2img";
+  const [ImgStyle, setImgStyle] = useState(null);
+  const API_ENDPOINT = "https://stablediffusionapi.com/api/v4/dreambooth";
   useEffect(() => {
     console.log('result' , result);
   }, [result]);
-  const HandleAPICall = async () => {
+  const HandleAPICall = async (ModelId) => {
     try {
+      const model_id = ModelId;
+    
+      
       const requestData = {
         key: 'qw74CWfWQv2CCCseTU9LlNwKBlACUwCYxkra9ZYbWqC6r1tL5YuLiVgUaBoJ',
         prompt: TextAreaValue, // Use the textarea value
-        width: '600',
-        height: '600',
-        samples: '1',
-        num_inference_steps: '20',
-        safety_checker: 'no',
-        enhance_prompt: 'yes',
-        seed: null,
-        guidance_scale: 3.5,
-        webhook: null,
-        track_id: null
+        negative_prompt: "(text, watermark:2.0), gaussian noise, worst quality, lowres, oversaturated, undersaturated, overexposed, underexposed, grayscale, bw, bad photo, bad photography, bad art, blur, blurry, grainy, morbid, ugly, asymmetrical, mutated, malformed, mutilated, poorly lit, bad shadow, draft, cropped, out of frame, cut off, censored, jpeg artifacts, out of focus, glitch, duplicate, pixelated, soft focus, color fringing, overprocessed, oversharpened, photographic, realistic, realism, 35mm film, dslr, cropped, frame, text, deformed, glitch, noise, noisy, off-center, deformed, cross-eyed, closed eyes, bad anatomy, ugly, disfigured, sloppy, duplicate, mutated, black and white",
+model_id: model_id,
+width: "1024",
+height: "1024",
+samples: "1",
+num_inference_steps: "50",
+safety_checker: "yes",
+enhance_prompt: "no",
+seed: null,
+guidance_scale: 15,
+panorama: "yes",
+multi_lingual: "no",
+lora_model: "more_details_XL",
+lora_strength: "1",
+upscale: 1
       };
 
       const response = await axios.post(API_ENDPOINT, requestData);
       setResult(response.data.output[0]); // Store the URL in result state
+     
      
     } catch (error) {
       console.error('Error:', error);
@@ -155,7 +165,6 @@ const HeroSlider = () => {
     
   }
 
-  
  
   const handleOpenResult = () => {
     if (result) {
@@ -269,23 +278,20 @@ const HeroSlider = () => {
         {/* Description */}
         <div className="fn_cs_desc">
           <h4>Write your own prompt to generate your dream art</h4>
-          <textarea
+          <TextareaAutosize 
+            minRows={2}
         value={TextAreaValue}
         onChange={handleTextAreaChange} // Correctly call the function
-      ></textarea>
+      ></TextareaAutosize>
           <br></br>
-          <a
-             
-              className="metaportal_fn_button"
-              target="_blank"
-              rel="noreferrer"
-              onClick={HandleAPICall}
-              
-            >
-              {/* {isLoad ? '' : <span >Generate</span>} */}
-              <span >Generate</span>
-            </a>
-            <br></br>
+        
+       {/* {IsDataLoading? <Button variant="contained" onClick={HandleAPICall("juggernaut-xl")} >Generate</Button> : <CircularProgress/>} */}
+          <Button variant="contained" disabled={ImgStyle==null?true:false}  onClick={()=>{HandleAPICall(ImgStyle)}} >Generate</Button>
+          {/* <Button variant="outline" onClick={() => {  setImgStyle("juggernaut-x") }} load> Style 1</Button>
+          <Button variant="outline" onClick={() => { setImgStyle("ae-sdxl-v1") }} load> Style 2</Button> */}
+          <Box display={'flex'} flex={'row'}><Button variant="outline"   onClick={() => {  setImgStyle("juggernaut-xl") }} load> Style 1</Button>
+          <Button variant="outline" onClick={() => { setImgStyle("ae-sdxl-v1") }} load> Style 2</Button>
+          </Box>
            {result && (
         <div>
           <img src={result} alt="Generated Image" />
