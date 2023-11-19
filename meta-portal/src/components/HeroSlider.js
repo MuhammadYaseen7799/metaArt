@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
-import axios from 'axios'; // Import the axios library
-import { Box, Button , CircularProgress, TextareaAutosize } from "@mui/material";
-
+import axios from "axios"; // Import the axios library
+import {
+  Box,
+  Button,
+  CircularProgress,
+  IconButton,
+  TextareaAutosize,
+  Typography,
+} from "@mui/material";
+import SaveAltIcon from "@mui/icons-material/SaveAlt";
+import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from "@mui/material/Dialog";
 const HeroSlider = () => {
   // Hero slider
   useEffect(() => {
@@ -122,55 +131,112 @@ const HeroSlider = () => {
     return activeIndex;
   };
 
-  const [TextAreaValue , setTextAreaValue] = useState();
+  const [TextAreaValue, setTextAreaValue] = useState();
   const [result, setResult] = useState();
   const [ImgStyle, setImgStyle] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [loadImage, setLoadImage] = useState(true);
+  const openImageDialog = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeImageDialog = () => {
+    setModalIsOpen(false);
+  };
+  const model_styles = [
+    "juggernaut-xl",
+    "xsdmodelx",
+    "dream-shaper-8797",
+    "midjourney",
+    "sdxl-unstable-diffusers-y",
+    "ae-sdxl-v1",
+    "crystal-clear-xlv1",
+    "sdxl",
+  ];
+  const model_img_paths = [
+    "/img/Model/juggernaut-xl.jpg",
+    "/img/Model/xsdmodelx.jpg",
+    "/img/Model/dream-shaper-8797.jpg",
+    "/img/Model/midjourney.jpg",
+    "/img/Model/sdxl-unstable-diffusers-y.jpg",
+    "/img/Model/AE-SDXL-V1-Model1.jpg",
+    "/img/Model/crystal-clear-xlv1.jpg",
+    "/img/Model/SDXL.jpg",
+  ];
   const API_ENDPOINT = "https://stablediffusionapi.com/api/v4/dreambooth";
   useEffect(() => {
-    console.log('result' , result);
+    console.log("result", result);
   }, [result]);
   const HandleAPICall = async (ModelId) => {
     try {
       const model_id = ModelId;
-    
-      
+      setLoadImage(false);
       const requestData = {
-        key: 'qw74CWfWQv2CCCseTU9LlNwKBlACUwCYxkra9ZYbWqC6r1tL5YuLiVgUaBoJ',
+        key: "qw74CWfWQv2CCCseTU9LlNwKBlACUwCYxkra9ZYbWqC6r1tL5YuLiVgUaBoJ",
         prompt: TextAreaValue, // Use the textarea value
-        negative_prompt: "(text, watermark:2.0), gaussian noise, worst quality, lowres, oversaturated, undersaturated, overexposed, underexposed, grayscale, bw, bad photo, bad photography, bad art, blur, blurry, grainy, morbid, ugly, asymmetrical, mutated, malformed, mutilated, poorly lit, bad shadow, draft, cropped, out of frame, cut off, censored, jpeg artifacts, out of focus, glitch, duplicate, pixelated, soft focus, color fringing, overprocessed, oversharpened, photographic, realistic, realism, 35mm film, dslr, cropped, frame, text, deformed, glitch, noise, noisy, off-center, deformed, cross-eyed, closed eyes, bad anatomy, ugly, disfigured, sloppy, duplicate, mutated, black and white",
-model_id: model_id,
-width: "1024",
-height: "1024",
-samples: "1",
-num_inference_steps: "50",
-safety_checker: "yes",
-enhance_prompt: "no",
-seed: null,
-guidance_scale: 15,
-panorama: "yes",
-multi_lingual: "no",
-lora_model: "more_details_XL",
-lora_strength: "1",
-upscale: 1
+        negative_prompt:
+          "(text, watermark:2.0), gaussian noise, worst quality, ...", // Your negative prompt
+        model_id: model_id,
+        width: "1024",
+        height: "1024",
+        samples: "1",
+        num_inference_steps: "50",
+        safety_checker: "yes",
+        enhance_prompt: "no",
+        seed: null,
+        guidance_scale: 15,
+        panorama: "yes",
+        multi_lingual: "no",
+        lora_model: "more_details_XL",
+        lora_strength: "1",
+        upscale: 1,
       };
 
-      const response = await axios.post(API_ENDPOINT, requestData);
-      setResult(response.data.output[0]); // Store the URL in result state
-     
-     
+      const response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
+      setLoadImage(true);
+      if (response.ok) {
+        const responseData = await response.json();
+
+        // Check for data in the response
+        if (
+          responseData.status === "success" &&
+          responseData.output &&
+          responseData.output.length > 0
+        ) {
+          setResult(responseData.output[0]);
+          openImageDialog();
+
+          // Store the URL in the result state
+        } else if (responseData.status === "processing") {
+          console.log(
+            "API response is still processing. You may need to wait and check again."
+          );
+        } else {
+          console.error(
+            "API response does not contain valid data:",
+            responseData
+          );
+        }
+      } else {
+        console.error("API request failed with status:", response.status);
+      }
     } catch (error) {
-      console.error('Error:', error);
-    }
-
-    
-  }
-
- 
-  const handleOpenResult = () => {
-    if (result) {
-      window.open(result, '_blank'); // Open the URL in a new tab
+      console.error("Error:", error);
     }
   };
+
+  // const handleOpenResult = () => {
+  //   if (result) {
+  //     window.open(result, "_blank"); // Open the URL in a new tab
+  //   }
+  // };
 
   const handleTextAreaChange = (event) => {
     setTextAreaValue(event.target.value); // Update the state with the new value
@@ -278,27 +344,105 @@ upscale: 1
         {/* Description */}
         <div className="fn_cs_desc">
           <h4>Write your own prompt to generate your dream art</h4>
-          <TextareaAutosize 
+          <TextareaAutosize
             minRows={2}
-        value={TextAreaValue}
-        onChange={handleTextAreaChange} // Correctly call the function
-      ></TextareaAutosize>
+            value={TextAreaValue}
+            onChange={handleTextAreaChange} // Correctly call the function
+          ></TextareaAutosize>
           <br></br>
-        
-       {/* {IsDataLoading? <Button variant="contained" onClick={HandleAPICall("juggernaut-xl")} >Generate</Button> : <CircularProgress/>} */}
-          <Button variant="contained" disabled={ImgStyle==null?true:false}  onClick={()=>{HandleAPICall(ImgStyle)}} >Generate</Button>
+
+          {/* {IsDataLoading? <Button variant="contained" onClick={HandleAPICall("juggernaut-xl")} >Generate</Button> : <CircularProgress/>} */}
+
           {/* <Button variant="outline" onClick={() => {  setImgStyle("juggernaut-x") }} load> Style 1</Button>
           <Button variant="outline" onClick={() => { setImgStyle("ae-sdxl-v1") }} load> Style 2</Button> */}
-          <Box display={'flex'} flex={'row'}><Button variant="outline"   onClick={() => {  setImgStyle("juggernaut-xl") }} load> Style 1</Button>
-          <Button variant="outline" onClick={() => { setImgStyle("ae-sdxl-v1") }} load> Style 2</Button>
+          <Box display={"flex"} flexWrap={"wrap"} boxSizing={"border-box"}>
+            {model_styles.map((model_id, index) => (
+              <div
+                key={index}
+                style={{
+                  flexBasis: "20%",
+                  padding: "5px", // Adjust the padding as needed
+                  boxSizing: "border-box", // Include padding in the width calculation
+                  transition: "transform 0.2s ease-in-out", // Add a smooth transition
+                  borderRadius: "10px", // Rounded border
+                }}
+                onClick={() => {
+                  setSelectedImage(index);
+                  setImgStyle(model_styles[index]);
+                }}
+              >
+                <img
+                  src={model_img_paths[index]}
+                  width={"80%"}
+                  height={"110px"}
+                  style={{
+                    borderRadius: "10px",
+                    boxShadow: "initial",
+                    border:
+                      selectedImage === index ? "5px solid white" : "none", // Highlight selected image
+                  }}
+                  alt={model_id}
+                  // Add hover effect
+                  onMouseOver={() => {
+                    // Scale up on hover
+                    document.getElementById(`image-${index}`).style.transform =
+                      "scale(1.1)";
+                  }}
+                  onMouseOut={() => {
+                    // Reset on hover out
+                    document.getElementById(`image-${index}`).style.transform =
+                      "scale(1)";
+                  }}
+                  id={`image-${index}`}
+                />
+              </div>
+            ))}
           </Box>
-           {result && (
-        <div>
-          <img src={result} alt="Generated Image" />
-          <br />
-          <button onClick={handleOpenResult}>Open Result in Browser</button>
-        </div>
-      )}
+
+          {loadImage ? (
+            <Button
+              variant="contained"
+              disabled={selectedImage == null ? true : false}
+              onClick={() => {
+                HandleAPICall(ImgStyle);
+              }}
+              width={"100%"}
+              sx={{
+                marginTop: "20px",
+                backgroundColor: "white",
+                color: "purple",
+                fontWeight: "bold",
+              }}
+            >
+              Generate
+            </Button>
+          ) : (
+            <CircularProgress sx={{ marginTop: "20px" }} />
+          )}
+
+          {result && (
+            <Dialog onClose={closeImageDialog} open={modalIsOpen} maxWidth>
+              <Box>
+                <Box display="flex" justifyContent="space-between">
+                  <Typography>The image in response to your prompt</Typography>
+                  <IconButton>
+                    <SaveAltIcon />
+                  </IconButton>
+                </Box>
+                <img
+                  src={result}
+                  alt="Generated Image"
+                  width={"500px"}
+                  height={"500px"}
+                />
+              </Box>
+            </Dialog>
+            // <div>
+            //   <img src={result} alt="Generated Image" />
+            //   <br />
+            //   <button onClick={handleOpenResult}>Open Result in Browser</button>
+            // </div>
+          )}
         </div>
         {/* !Description */}
       </div>

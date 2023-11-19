@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { navigationToggle, walletToggle } from "../redux/actions/siteSettings";
 import { stickyNav } from "../utilits";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Header = ({ walletToggle, navigationToggle }) => {
   useEffect(() => {
@@ -14,9 +16,23 @@ const Header = ({ walletToggle, navigationToggle }) => {
       <div className="header">
         <div className="header_in">
           <div className="trigger_logo">
-            <div className="trigger" onClick={() => navigationToggle(true)}>
-              <span />
+            {/* <div className="trigger" onClick={() => navigationToggle(true)}> */}
+            <div
+              style={{
+                borderRadius: "20%",
+                background: "white",
+                padding: "5px", // Adjust the padding as needed
+              }}
+            >
+              <IconButton
+                style={{ fontSize: "4rem", color: "purple" }} // Adjust the fontSize as needed
+                onClick={() => navigationToggle(true)}
+              >
+                <MenuIcon />
+              </IconButton>
             </div>
+
+            {/* </div> */}
             <div className="logo">
               <Link href="/">
                 <a>
@@ -54,7 +70,6 @@ const Header = ({ walletToggle, navigationToggle }) => {
               </li>
             </ul>
           </div>
-          
         </div>
       </div>
     </header>
