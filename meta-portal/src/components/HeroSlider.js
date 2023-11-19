@@ -133,10 +133,10 @@ const HeroSlider = () => {
 
   const [TextAreaValue, setTextAreaValue] = useState();
   const [result, setResult] = useState();
-  const [ImgStyle, setImgStyle] = useState(null);
+  const [ImgStyle, setImgStyle] = useState(null); // border image or set model pick
   const [selectedImage, setSelectedImage] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [loadImage, setLoadImage] = useState(true);
+  const [modalIsOpen, setModalIsOpen] = useState(false); //image pop up dialog
+  const [loadImage, setLoadImage] = useState(true); // image loader while gener
   const openImageDialog = () => {
     setModalIsOpen(true);
   };
@@ -356,7 +356,7 @@ const HeroSlider = () => {
           {/* <Button variant="outline" onClick={() => {  setImgStyle("juggernaut-x") }} load> Style 1</Button>
           <Button variant="outline" onClick={() => { setImgStyle("ae-sdxl-v1") }} load> Style 2</Button> */}
           <Box display={"flex"} flexWrap={"wrap"} boxSizing={"border-box"}>
-            {model_styles.map((model_id, index) => (
+            {model_styles.map((model_id, index) => ( // loop maper
               <div
                 key={index}
                 style={{
