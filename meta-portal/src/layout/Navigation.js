@@ -33,10 +33,10 @@ const Navigation = ({ navigation, navigationToggle }) => {
             >
              
               <li>
-                <Link href="/#home">
-                  <a onClick={() => navigationToggle(false)}>
-                    <span className="creative_link">Home</span>
-                  </a>
+                <Link href="/#home" onClick={() => navigationToggle(false)}>
+
+                  <span className="creative_link">Home</span>
+
                 </Link>
               </li>
             
@@ -44,10 +44,10 @@ const Navigation = ({ navigation, navigationToggle }) => {
              
                
               <li>
-                <Link href="/blog">
-                  <a onClick={() => navigationToggle(false)}>
-                    <span className="creative_link">Blog</span>
-                  </a>
+                <Link href="/blog" onClick={() => navigationToggle(false)}>
+
+                  <span className="creative_link">Blog</span>
+
                 </Link>
               </li>
               

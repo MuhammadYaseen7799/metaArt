@@ -23,15 +23,15 @@ const Blog = () => {
                   <div className="title">
                     <h3>
                       <Link href="https://egfound.org/projects/digital-revolution-technology-power-you/?gclid=Cj0KCQjwi7GnBhDXARIsAFLvH4k3cvV5p9VLae9vjysUOlKjnLjNthpi3wSUrgziIT4LBPO8-Rbs3jIaAtZpEALw_wcB">
-                        <a>Technology, Power, & You</a>
+                        Technology, Power, & You
                       </Link>
                     </h3>
                   </div>
                   <div className="image">
                     <Link href="https://egfound.org/projects/digital-revolution-technology-power-you/?gclid=Cj0KCQjwi7GnBhDXARIsAFLvH4k3cvV5p9VLae9vjysUOlKjnLjNthpi3wSUrgziIT4LBPO8-Rbs3jIaAtZpEALw_wcB">
-                      <a>
-                        <img src="/img/blog/a1.jpg" alt="" />
-                      </a>
+
+                      <img src="/img/blog/a1.jpg" alt="" />
+
                     </Link>
                   </div>
                   
@@ -50,15 +50,15 @@ const Blog = () => {
                   <div className="title">
                     <h3>
                       <Link href="https://www.cigionline.org/articles/cyber-security-battlefield/?utm_source=google_ads&utm_medium=grant&gclid=Cj0KCQjwi7GnBhDXARIsAFLvH4nryZ78BZEvLDfkR6qPuhMsmmPuh2p-J9hbnrRhKlfSHUzGDqtADEUaAiuREALw_wcB">
-                        <a>AI and Cyber Security</a>
+                        AI and Cyber Security
                       </Link>
                     </h3>
                   </div>
                   <div className="image">
                     <Link href="https://www.cigionline.org/articles/cyber-security-battlefield/?utm_source=google_ads&utm_medium=grant&gclid=Cj0KCQjwi7GnBhDXARIsAFLvH4nryZ78BZEvLDfkR6qPuhMsmmPuh2p-J9hbnrRhKlfSHUzGDqtADEUaAiuREALw_wcB">
-                      <a>
-                        <img src="/img/blog/A2.jpg" alt="" />
-                      </a>
+
+                      <img src="/img/blog/A2.jpg" alt="" />
+
                     </Link>
                   </div>
                  
@@ -77,17 +77,17 @@ const Blog = () => {
                   <div className="title">
                     <h3>
                       <Link href="https://spectrum.ieee.org/analog-ai-ibm">
-                        <a>
+                        
                         IBM’S AI Chip May Find Use in Generative AI
-                        </a>
+                        
                       </Link>
                     </h3>
                   </div>
                   <div className="image">
                     <Link href="https://spectrum.ieee.org/analog-ai-ibm">
-                      <a>
-                        <img src="/img/blog/A4.jpg" alt="" />
-                      </a>
+
+                      <img src="/img/blog/A4.jpg" alt="" />
+
                     </Link>
                   </div>
                   
@@ -106,15 +106,15 @@ const Blog = () => {
                   <div className="title">
                     <h3>
                       <Link href="https://spectrum.ieee.org/side-channel-attack">
-                        <a>This AI Can Tell What You’re Typing Based on the Sound</a>
+                        This AI Can Tell What You’re Typing Based on the Sound
                       </Link>
                     </h3>
                   </div>
                   <div className="image">
                     <Link href="https://spectrum.ieee.org/side-channel-attack">
-                      <a>
-                        <img src="/img/blog/A3.jpg" alt="" />
-                      </a>
+
+                      <img src="/img/blog/A3.jpg" alt="" />
+
                     </Link>
                   </div>
                  

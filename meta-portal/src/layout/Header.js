@@ -35,37 +35,37 @@ const Header = ({ walletToggle, navigationToggle }) => {
             {/* </div> */}
             <div className="logo">
               <Link href="/">
-                <a>
-                  <img src="/img/logo.png" alt="" />
-                </a>
+
+                <img src="/img/logo.png" alt="" />
+
               </Link>
             </div>
           </div>
           <div className="nav" style={{ opacity: 1 }}>
             <ul>
               <li>
-                <Link href="/#home">
-                  <a className="creative_link">Home</a>
+                <Link href="/#home" className="creative_link">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href="/#about">
-                  <a className="creative_link">About</a>
+                <Link href="/#about" className="creative_link">
+                  About
                 </Link>
               </li>
               <li>
-                <Link href="/#collection">
-                  <a className="creative_link">Collection</a>
+                <Link href="/#collection" className="creative_link">
+                  Collection
                 </Link>
               </li>
               <li>
-                <Link href="/#news">
-                  <a className="creative_link">Blog</a>
+                <Link href="/#news" className="creative_link">
+                  Blog
                 </Link>
               </li>
               <li>
-                <Link href="/#contact">
-                  <a className="creative_link">Contact</a>
+                <Link href="/#contact" className="creative_link">
+                  Contact
                 </Link>
               </li>
             </ul>

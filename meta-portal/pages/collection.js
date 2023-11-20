@@ -45,13 +45,13 @@ const Collection = ({ getNfts, nfts }) => {
                           <div className="nft__item">
                             <div className="img_holder">
                               <img src={nft.image} alt="" />
-                              <Link href={`/nft/${nft.id}`}>
-                                <a className="full_link" />
+                              <Link href={`/nft/${nft.id}`} className="full_link">
+
                               </Link>
                             </div>
                             <div className="title_holder">
                               <h3 className="fn_title">
-                                <Link href={`/nft/${nft.id}`}>{nft.title}</Link>
+                                <Link href={`/nft/${nft.id}`} legacyBehavior>{nft.title}</Link>
                               </h3>
                             </div>
                           </div>
