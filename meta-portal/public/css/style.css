@@ -824,6 +824,7 @@ a.full_link{
 }
 .header .nav{
 	opacity: 0;
+	
 }
 .header .trigger_logo{
 	display: -webkit-flex;

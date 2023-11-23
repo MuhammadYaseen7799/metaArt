@@ -35,38 +35,64 @@ const Header = ({ walletToggle, navigationToggle }) => {
             {/* </div> */}
             <div className="logo">
               <Link href="/">
-
                 <img src="/img/logo.png" alt="" />
-
               </Link>
             </div>
           </div>
           <div className="nav" style={{ opacity: 1 }}>
-            <ul>
+            <ul
+              style={{
+                fontFamily: "Montserrat, sans-serif", // Add this line to set the font
+              }}
+            >
               <li>
-                <Link href="/#home" className="creative_link">
-                  Home
-                </Link>
+                <a href="/#home" onClick={() => navigationToggle(false)}>
+                  <span
+                    className="creative_link"
+                    style={{
+                      fontFamily: "Montserrat, sans-serif", // Add this line to set the font
+                    }}
+                  >
+                    Home
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/#about"
+                  className="creative_link"
+                  onClick={() => navigationToggle(false)}
+                >
+                  <span className="creative_link">About</span>
+                </a>
               </li>
               <li>
-                <Link href="/#about" className="creative_link">
-                  About
-                </Link>
+                <a
+                  href="/#collection"
+                  className="creative_link"
+                  onClick={() => navigationToggle(false)}
+                >
+                  <span className="creative_link">Collection</span>
+                </a>
               </li>
               <li>
-                <Link href="/#collection" className="creative_link">
-                  Collection
-                </Link>
+                <a
+                  href="/#news"
+                  className="creative_link"
+                  onClick={() => navigationToggle(false)}
+                >
+                  <span className="creative_link">Blog</span>
+                </a>
               </li>
               <li>
-                <Link href="/#news" className="creative_link">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/#contact" className="creative_link">
-                  Contact
-                </Link>
+                <a
+                  href="/#contact"
+                  className="creative_link"
+                  onClick={() => navigationToggle(false)}
+                >
+                  <span className="creative_link">Contact</span>
+                </a>
               </li>
             </ul>
           </div>

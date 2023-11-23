@@ -211,6 +211,7 @@ const HeroSlider = () => {
           responseData.output.length > 0
         ) {
           setResult(responseData.output[0]);
+          console.log("img", result);
           openImageDialog();
 
           // Store the URL in the result state
@@ -237,6 +238,22 @@ const HeroSlider = () => {
   //     window.open(result, "_blank"); // Open the URL in a new tab
   //   }
   // };
+
+  const [image_number, set_image_number] = useState(0);
+  const downloadImage = (url) => {
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = `generated_image_${image_number}.png`; // Set the desired file name
+        document.body.appendChild(link);
+        set_image_number(image_number + 1);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch((error) => console.error("Error downloading image:", error));
+  };
 
   const handleTextAreaChange = (event) => {
     setTextAreaValue(event.target.value); // Update the state with the new value
@@ -342,107 +359,156 @@ const HeroSlider = () => {
         </div>
         {/* !Slider */}
         {/* Description */}
-        <div className="fn_cs_desc">
-          <h4>Write your own prompt to generate your dream art</h4>
-          <TextareaAutosize
-            minRows={2}
-            value={TextAreaValue}
-            onChange={handleTextAreaChange} // Correctly call the function
-          ></TextareaAutosize>
-          <br></br>
-
-          {/* {IsDataLoading? <Button variant="contained" onClick={HandleAPICall("juggernaut-xl")} >Generate</Button> : <CircularProgress/>} */}
-
-          {/* <Button variant="outline" onClick={() => {  setImgStyle("juggernaut-x") }} load> Style 1</Button>
-          <Button variant="outline" onClick={() => { setImgStyle("ae-sdxl-v1") }} load> Style 2</Button> */}
-          <Box display={"flex"} flexWrap={"wrap"} boxSizing={"border-box"}>
-            {model_styles.map((model_id, index) => ( // loop maper
-              <div
-                key={index}
-                style={{
-                  flexBasis: "20%",
-                  padding: "5px", // Adjust the padding as needed
-                  boxSizing: "border-box", // Include padding in the width calculation
-                  transition: "transform 0.2s ease-in-out", // Add a smooth transition
-                  borderRadius: "10px", // Rounded border
-                }}
-                onClick={() => {
-                  setSelectedImage(index);
-                  setImgStyle(model_styles[index]);
-                }}
-              >
-                <img
-                  src={model_img_paths[index]}
-                  width={"80%"}
-                  height={"110px"}
-                  style={{
-                    borderRadius: "10px",
-                    boxShadow: "initial",
-                    border:
-                      selectedImage === index ? "5px solid white" : "none", // Highlight selected image
-                  }}
-                  alt={model_id}
-                  // Add hover effect
-                  onMouseOver={() => {
-                    // Scale up on hover
-                    document.getElementById(`image-${index}`).style.transform =
-                      "scale(1.1)";
-                  }}
-                  onMouseOut={() => {
-                    // Reset on hover out
-                    document.getElementById(`image-${index}`).style.transform =
-                      "scale(1)";
-                  }}
-                  id={`image-${index}`}
-                />
-              </div>
-            ))}
-          </Box>
-
-          {loadImage ? (
-            <Button
-              variant="contained"
-              disabled={selectedImage == null ? true : false}
-              onClick={() => {
-                HandleAPICall(ImgStyle);
-              }}
-              width={"100%"}
-              sx={{
-                marginTop: "20px",
-                backgroundColor: "white",
-                color: "purple",
-                fontWeight: "bold",
+        <div
+          style={{
+            backgroundColor: "white",
+            opacity: "0.8",
+            padding: "10px",
+            borderRadius: "10px",
+          }}
+        >
+          <div className="fn_cs_desc">
+            <h4
+              style={{
+                fontFamily: "Montserrat, sans-serif",
+                fontSize: "24px",
+                lineHeight: "34px",
+                fontWeight: 600,
+                color: "#2A0134", // Dark purple hex color
+                marginBottom: "40px",
+                marginTop: "30px",
               }}
             >
-              Generate
-            </Button>
-          ) : (
-            <CircularProgress sx={{ marginTop: "20px" }} />
-          )}
+              Write your own prompt to generate your dream art
+            </h4>
+            <TextareaAutosize
+              minRows={4}
+              value={TextAreaValue}
+              onChange={handleTextAreaChange}
+              style={{
+                border: "2px dashed #2A0134", // Change to the specific shade or hex value you want
+                borderRadius: "8px", // Optional: add border-radius for a rounded appearance
+                padding: "10px", // Optional: add padding for better visual appearance
+                fontFamily: "Montserrat, sans-serif",
+                color: "#583759",
+                fontWeight: 600,
+              }}
+            ></TextareaAutosize>
+            <br></br>
 
-          {result && (
-            <Dialog onClose={closeImageDialog} open={modalIsOpen} maxWidth>
-              <Box>
-                <Box display="flex" justifyContent="space-between">
-                  <Typography>The image in response to your prompt</Typography>
-                  <IconButton>
-                    <SaveAltIcon />
-                  </IconButton>
+            {/* {IsDataLoading? <Button variant="contained" onClick={HandleAPICall("juggernaut-xl")} >Generate</Button> : <CircularProgress/>} */}
+
+            {/* <Button variant="outline" onClick={() => {  setImgStyle("juggernaut-x") }} load> Style 1</Button>
+          <Button variant="outline" onClick={() => { setImgStyle("ae-sdxl-v1") }} load> Style 2</Button> */}
+            <Box display={"flex"} flexWrap={"wrap"} boxSizing={"border-box"}>
+              {model_styles.map((model_id, index) => (
+                <div
+                  key={index}
+                  style={{
+                    flexBasis: "20%",
+                    padding: "5px",
+                    boxSizing: "border-box",
+                    transition: "transform 0.2s ease-in-out",
+                    borderRadius: "10px",
+                    opacity:
+                      selectedImage === null || selectedImage === index
+                        ? 1
+                        : 0.5,
+                    // Adjust opacity based on selection
+                  }}
+                  onClick={() => {
+                    setSelectedImage(index);
+                    setImgStyle(model_styles[index]);
+                  }}
+                >
+                  <img
+                    src={model_img_paths[index]}
+                    width={"90%"}
+                    height={"90px"}
+                    style={{
+                      borderRadius: "10px",
+                      border:
+                        selectedImage === index ? "5px solid #583759" : "none",
+                    }}
+                    alt={model_id}
+                    onMouseOver={() => {
+                      document.getElementById(
+                        `image-${index}`
+                      ).style.transform = "scale(1.1)";
+                    }}
+                    onMouseOut={() => {
+                      document.getElementById(
+                        `image-${index}`
+                      ).style.transform = "scale(1)";
+                    }}
+                    id={`image-${index}`}
+                  />
+                </div>
+              ))}
+            </Box>
+
+            {loadImage ? (
+              <Button
+                variant="contained"
+                disabled={selectedImage == null ? true : false}
+                onClick={() => {
+                  HandleAPICall(ImgStyle);
+                }}
+                width={"100%"}
+                sx={{
+                  marginTop: "30px",
+                  backgroundColor: "#2A0134",
+                  color: "white",
+                  fontWeight: "bold",
+                  marginBottom: "30px",
+                  paddingX: "50px",
+                }}
+              >
+                Generate
+              </Button>
+            ) : (
+              <CircularProgress
+                sx={{
+                  marginTop: "20px",
+                  marginBottom: "30px",
+                  color: "#2A0134",
+                }}
+              />
+            )}
+
+            {result && (
+              <Dialog onClose={closeImageDialog} open={modalIsOpen} maxWidth>
+                <Box>
+                  <Box display="flex" justifyContent="space-between">
+                    <Typography
+                      style={{
+                        padding: "10px",
+                        fontFamily: "Montserrat, sans-serif",
+                        color: "#583759",
+                        fontWeight: 600,
+                      }}
+                    >
+                      The image in response to your prompt
+                    </Typography>
+                    <IconButton onClick={() => downloadImage(result)}>
+                      <SaveAltIcon style={{ color: "#583759" }} />
+                    </IconButton>
+                  </Box>
+                  <img
+                    src={result}
+                    alt="Generated Image"
+                    width={"500px"}
+                    height={"500px"}
+                  />
                 </Box>
-                <img
-                  src={result}
-                  alt="Generated Image"
-                  width={"500px"}
-                  height={"500px"}
-                />
-              </Box>
-            </Dialog>
-            // <div>
-            //   <img src={result} alt="Generated Image" />
-            //   <br />
-            //   <button onClick={handleOpenResult}>Open Result in Browser</button>
-            // </div>
-          )}
+              </Dialog>
+              // <div>
+              //   <img src={result} alt="Generated Image" />
+              //   <br />
+              //   <button onClick={handleOpenResult}>Open Result in Browser</button>
+              // </div>
+            )}
+          </div>
         </div>
         {/* !Description */}
       </div>
