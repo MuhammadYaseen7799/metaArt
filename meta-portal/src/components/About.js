@@ -1,7 +1,13 @@
+import { Button } from "@mui/material";
 import Link from "next/link";
+// Function to load the PayPal script dynamically
+
+
+
 const About = () => {
   return (
     <section id="about">
+      
       {/* About Shortcode */}
       <div className="fn_cs_about">
         <div className="left_part">
@@ -16,40 +22,64 @@ const About = () => {
           </div>
         </div>
         <div className="right_part">
-          <div className="right_in">
-            <h3 className="fn__maintitle" data-text="AI Art Generation">
-              AI Art Generation
-            </h3>
-            <div className="fn_cs_divider">
-              <div className="divider">
-                <span />
-                <span />
-              </div>
-            </div>
-            <div className="desc">
-              <p>
-              In the captivating realm of art, the fusion of artificial intelligence and creative expression has birthed AI art generation, a phenomenon that redefines traditional artistic boundaries. By harnessing machine learning algorithms, AI analyzes vast art datasets to learn techniques, styles, and patterns, resulting in unique visual creations.
-              </p>
-              <p>
-              AI-generated art opens pathways to unexplored artistic territories, blending diverse styles and birthing fresh, imaginative compositions. It's a symbiotic collaboration between human artists and AI tools, offering innovative starting points for artists to expand upon.
-              </p>
-              <p>
-              However, debates concerning authorship and originality arise, as AI's inspiration derives from existing works. This sparks discussions about copyright and the essence of genuine creativity. Nevertheless, AI-generated art transcends static imagery, seeping into interactive installations, virtual reality, and music composition.
-              </p>
-              <p>
-              As technology advances, AI art creation is poised to revolutionize artistic expression, offering new mediums for innovation. This evolving dialogue between human ingenuity and AI's computational prowess shapes a new era of art—one that challenges conventions, pushes boundaries, and invites us to explore the harmonious coalescence of human imagination and technological capabilities.
-              </p>
-            </div>
-            <a
-              href="https://discord.com/"
-              className="metaportal_fn_button"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span>Find us On Discord</span>
-            </a>
-          </div>
-        </div>
+  <div className="right_in">
+    <h3 className="fn__maintitle" data-text="Subscription Plans">
+      Subscription Plans
+    </h3>
+    <div className="fn_cs_divider">
+      <div className="divider">
+        <span />
+        <span />
+      </div>
+    </div>
+    <div className="subscription-boxes">
+      <div className="subscription-box">
+        <h4>Weekly Subscription</h4>
+        <p>$5 per week</p>
+        <Button 
+        variant="contained" onclick="purchaseSubscription('weekly')" width={"100%"}
+                sx={{
+                  marginTop: "30px",
+                  backgroundColor: "#808080",
+                  color: "white",
+                  fontWeight: "bold",
+                  marginBottom: "30px",
+                  paddingX: "50px",
+                }}>Purchase</Button>
+      </div>
+      <div className="subscription-box">
+        <h4>Monthly Subscription</h4>
+        <p>$15 per month</p>
+        <Button 
+        variant="contained" onclick="purchaseSubscription('monthly')" width={"100%"}
+                sx={{
+                  marginTop: "30px",
+                  backgroundColor: "#808080",
+                  color: "white",
+                  fontWeight: "bold",
+                  marginBottom: "30px",
+                  paddingX: "50px",
+                }}>Purchase</Button>
+      </div>
+      <div className="subscription-box">
+        <h4>Yearly Subscription</h4>
+        <p>$100 per year</p>
+        <Button 
+        variant="contained" onclick="purchaseSubscription('yearly')" width={"100%"}
+                sx={{
+                  marginTop: "30px",
+                  backgroundColor: "#808080",
+                  color: "white",
+                  fontWeight: "bold",
+                  marginBottom: "30px",
+                  paddingX: "50px",
+                }}>Purchase</Button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
       </div>
       {/* !About Shortcode */}
      
@@ -193,4 +223,5 @@ export const About2 = () => (
       </div>
     </div>
   </section>
+  
 );
