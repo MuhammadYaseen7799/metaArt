@@ -64,7 +64,7 @@ const Header = ({ walletToggle, navigationToggle }) => {
                   className="creative_link"
                   onClick={() => navigationToggle(false)}
                 >
-                  <span className="creative_link">About</span>
+                  <span className="creative_link">Plans</span>
                 </a>
               </li>
               <li>

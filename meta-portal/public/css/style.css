@@ -52,7 +52,46 @@ html{
 #footer{
 	margin-top: auto;
 }
+.prev.hovered .text-overlay {
+	opacity: 1;
+  }
+  
+  .text-overlay {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	color: white;
+	font-size: 18px;
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.7);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+  }
+  
+  .text-overlay.visible {
+	opacity: 1;
+  }
+  .img.hovered .text-overlay {
+  opacity: 1;
+}
 
+.text-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.text-overlay.visible {
+  opacity: 1;
+}
 
 /* Preloader */
 .metaportal_fn_preloader{

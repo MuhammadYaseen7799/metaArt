@@ -15,6 +15,7 @@ const HeroSlider = () => {
   // Hero slider
   useEffect(() => {
     const fn_cs_slider = document.querySelectorAll(".fn_cs_slider");
+    
     fn_cs_slider.forEach((element) => {
       let sliderTop = element.getElementsByClassName("slider_top")[0],
         sliderBottom = element.getElementsByClassName("slider_content"),
@@ -164,7 +165,7 @@ const HeroSlider = () => {
     "/img/Model/crystal-clear-xlv1.jpg",
     "/img/Model/SDXL.jpg",
   ];
-  const API_ENDPOINT = "https://stablediffusionapi.com/api/v4/dreambooth";
+  const API_ENDPOINT = "https://modelslab.com/api/v6/images/text2img";
   useEffect(() => {
     console.log("result", result);
   }, [result]);
@@ -173,24 +174,34 @@ const HeroSlider = () => {
       const model_id = ModelId;
       setLoadImage(false);
       const requestData = {
-        key: "qw74CWfWQv2CCCseTU9LlNwKBlACUwCYxkra9ZYbWqC6r1tL5YuLiVgUaBoJ",
+        key: "xhjjeNlNe5qfoTfKc6w7oj4shoFZ4wxRxL7CTeWlJ8BImrZWL2kUHb1Ob1gs",
         prompt: TextAreaValue, // Use the textarea value
         negative_prompt:
           "(text, watermark:2.0), gaussian noise, worst quality, ...", // Your negative prompt
         model_id: model_id,
-        width: "1024",
-        height: "1024",
-        samples: "1",
-        num_inference_steps: "50",
-        safety_checker: "yes",
-        enhance_prompt: "no",
-        seed: null,
-        guidance_scale: 15,
-        panorama: "yes",
-        multi_lingual: "no",
-        lora_model: "more_details_XL",
-        lora_strength: "1",
-        upscale: 1,
+       
+  width: "512",
+  height: "512",
+  samples: "1",
+  num_inference_steps: "30",
+  safety_checker: "no",
+  enhance_prompt: "yes",
+  seed: null,
+  guidance_scale: 7.5,
+  multi_lingual: "no",
+  panorama: "no",
+  self_attention: "no",
+  upscale: "no",
+  embeddings_model: null,
+  lora_model: null,
+  tomesd: "yes",
+  clip_skip: "2",
+  use_karras_sigmas: "yes",
+  vae: null,
+  lora_strength: null,
+  scheduler: "UniPCMultistepScheduler",
+  webhook: null,
+  track_id: null
       };
 
       const response = await fetch(API_ENDPOINT, {
@@ -261,29 +272,40 @@ const HeroSlider = () => {
   useEffect(() => {
     // console.log('text' , TextAreaValue);
   }, [TextAreaValue]);
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <section id="home">
       <div className="container">
         <h3
           className="fn__maintitle big"
-          data-text="META ART"
+          data-text="FANTASISE AI ART" FANTASISE AI ART
           data-align="center"
         >
-          META ART
+          FANTASISE AI ART
         </h3>
         {/* Slider */}
         <div className="fn_cs_slider" data-responsive="on">
           <div className="slider_top">
             <img src="/img/1x1.jpg" alt="" />
             <ul>
-              <li className="prev" data-index={1}>
-                <div className="item">
-                  <img src="/img/1x1.jpg" alt="" />
-                  <div className="item_in">
-                    <div className="img" data-bg-img="/img/slider/1.png" />
-                  </div>
-                </div>
-              </li>
+            <li
+      className={`prev ${isHovered ? 'hovered' : ''}`}
+      data-index={1}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="item">
+        <img src="/img/1x1.jpg" alt="" className="image-hover" />
+        <div className="item_in">
+          <div className="img" style={{ backgroundImage: 'url("/img/slider/1.png")' }}>
+            {/* Add text overlay here */}
+            <div className={`text-overlay ${isHovered ? 'visible' : ''}`}>
+            Design a face using the medium of new paper art, where the intricately torn and arranged newspaper pieces come together to form a striking and thought-provoking visage. - Artistic
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
               <li className="active" data-index={2}>
                 <div className="item">
                   <img src="/img/1x1.jpg" alt="" />
@@ -292,6 +314,7 @@ const HeroSlider = () => {
                   </div>
                 </div>
               </li>
+              
               <li className="next" data-index={3}>
                 <div className="item has_video">
                   <img src="/img/1x1.jpg" alt="" />

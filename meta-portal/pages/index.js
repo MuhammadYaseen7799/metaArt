@@ -20,9 +20,7 @@ const Index = () => {
       <About />
       {/* !About Section */}
       {/* Section Divider */}
-      <SectionDivider />
-      {/* !Section Divider */}
-      {/* Collection Section */}
+    
       <Collection />
       {/* !Collection Section */}
       {/* Section Divider */}
