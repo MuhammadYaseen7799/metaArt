@@ -14,9 +14,9 @@ const MobileNavigation = ({ walletToggle, navigationToggle }) => {
         <div className="mob_mid">
           <div className="logo">
             <Link href="/">
-              <a>
-                <img src="/img/logo.png" alt="" />
-              </a>
+
+              <img src="/img/logo.png" alt="" />
+
             </Link>
           </div>
           <div

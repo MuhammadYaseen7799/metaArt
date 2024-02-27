@@ -105,11 +105,11 @@ const Nft = ({ getSingleNft, nft, getNfts, nfts }) => {
               <div className="metaportal_fn_breadcrumbs">
                 <p>
                   <Link href="/">
-                    <a>Home</a>
+                    Home
                   </Link>
                   <span className="separator">/</span>
                   <Link href="/collection">
-                    <a>Collection</a>
+                    Collection
                   </Link>
                   <span className="separator">/</span>
                   <span className="current">{nft && nft.title}</span>
@@ -396,8 +396,8 @@ const Nft = ({ getSingleNft, nft, getNfts, nfts }) => {
                           <div className="nft__item">
                             <div className="img_holder">
                               <img src={nft.image} alt="" />
-                              <Link href={`/nft/${nft.id}`}>
-                                <a className="full_link"></a>
+                              <Link href={`/nft/${nft.id}`} className="full_link">
+
                               </Link>
                             </div>
                             <div className="title_holder">

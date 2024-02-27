@@ -19,7 +19,6 @@ const Navigation = ({ navigation, navigationToggle }) => {
           <span />
         </a>
         <div className="navbox">
-          
           <div className="nav_holder">
             {/* For JS */}
             <span className="icon">
@@ -31,26 +30,17 @@ const Navigation = ({ navigation, navigationToggle }) => {
                 transform: `translateX(${subMenu !== null ? "-100" : "0"}%)`,
               }}
             >
-             
               <li>
-                <Link href="/#home">
-                  <a onClick={() => navigationToggle(false)}>
-                    <span className="creative_link">Home</span>
-                  </a>
-                </Link>
+                <a href="/#home" onClick={() => navigationToggle(false)}>
+                  <span className="creative_link">Home</span>
+                </a>
               </li>
-            
-           
-             
-               
+
               <li>
-                <Link href="/blog">
-                  <a onClick={() => navigationToggle(false)}>
-                    <span className="creative_link">Blog</span>
-                  </a>
-                </Link>
+                <a href="/blog" onClick={() => navigationToggle(false)}>
+                  <span className="creative_link">Blog</span>
+                </a>
               </li>
-              
             </ul>
           </div>
           <div className="info_holder">
@@ -62,7 +52,7 @@ const Navigation = ({ navigation, navigationToggle }) => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                 ArtsByYaseen
+                  ArtsByYaseen
                 </a>
               </p>
             </div>

@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { navigationToggle, walletToggle } from "../redux/actions/siteSettings";
 import { stickyNav } from "../utilits";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Header = ({ walletToggle, navigationToggle }) => {
   useEffect(() => {
@@ -14,47 +16,86 @@ const Header = ({ walletToggle, navigationToggle }) => {
       <div className="header">
         <div className="header_in">
           <div className="trigger_logo">
-            <div className="trigger" onClick={() => navigationToggle(true)}>
-              <span />
+            {/* <div className="trigger" onClick={() => navigationToggle(true)}> */}
+            <div
+              style={{
+                borderRadius: "20%",
+                background: "white",
+                padding: "5px", // Adjust the padding as needed
+              }}
+            >
+              <IconButton
+                style={{ fontSize: "4rem", color: "purple" }} // Adjust the fontSize as needed
+                onClick={() => navigationToggle(true)}
+              >
+                <MenuIcon />
+              </IconButton>
             </div>
+
+            {/* </div> */}
             <div className="logo">
               <Link href="/">
-                <a>
-                  <img src="/img/logo.png" alt="" />
-                </a>
+                <img src="/img/logo.png" alt="" />
               </Link>
             </div>
           </div>
           <div className="nav" style={{ opacity: 1 }}>
-            <ul>
+            <ul
+              style={{
+                fontFamily: "Montserrat, sans-serif", // Add this line to set the font
+              }}
+            >
               <li>
-                <Link href="/#home">
-                  <a className="creative_link">Home</a>
-                </Link>
+                <a href="/#home" onClick={() => navigationToggle(false)}>
+                  <span
+                    className="creative_link"
+                    style={{
+                      fontFamily: "Montserrat, sans-serif", // Add this line to set the font
+                    }}
+                  >
+                    Home
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/#about"
+                  className="creative_link"
+                  onClick={() => navigationToggle(false)}
+                >
+                  <span className="creative_link">Plans</span>
+                </a>
               </li>
               <li>
-                <Link href="/#about">
-                  <a className="creative_link">About</a>
-                </Link>
+                <a
+                  href="/#collection"
+                  className="creative_link"
+                  onClick={() => navigationToggle(false)}
+                >
+                  <span className="creative_link">Collection</span>
+                </a>
               </li>
               <li>
-                <Link href="/#collection">
-                  <a className="creative_link">Collection</a>
-                </Link>
+                <a
+                  href="/#news"
+                  className="creative_link"
+                  onClick={() => navigationToggle(false)}
+                >
+                  <span className="creative_link">Blog</span>
+                </a>
               </li>
               <li>
-                <Link href="/#news">
-                  <a className="creative_link">Blog</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/#contact">
-                  <a className="creative_link">Contact</a>
-                </Link>
+                <a
+                  href="/#contact"
+                  className="creative_link"
+                  onClick={() => navigationToggle(false)}
+                >
+                  <span className="creative_link">Contact</span>
+                </a>
               </li>
             </ul>
           </div>
-          
         </div>
       </div>
     </header>
