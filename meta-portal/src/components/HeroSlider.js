@@ -165,7 +165,7 @@ const HeroSlider = () => {
     "/img/Model/crystal-clear-xlv1.jpg",
     "/img/Model/SDXL.jpg",
   ];
-  const API_ENDPOINT = "https://modelslab.com/api/v6/images/text2img";
+  const API_ENDPOINT = "https://stablediffusionapi.com/api/v4/dreambooth";
   useEffect(() => {
     console.log("result", result);
   }, [result]);
