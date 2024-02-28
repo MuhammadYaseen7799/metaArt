@@ -298,9 +298,7 @@ const HeroSlider = () => {
         <div className="item_in">
           <div className="img" style={{ backgroundImage: 'url("/img/slider/1.png")' }}>
             {/* Add text overlay here */}
-            <div className={`text-overlay ${isHovered ? 'visible' : ''}`}>
-            Design a face using the medium of new paper art, where the intricately torn and arranged newspaper pieces come together to form a striking and thought-provoking visage. - Artistic
-            </div>
+           
           </div>
         </div>
       </div>
