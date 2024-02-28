@@ -19,26 +19,7 @@ const Contact = () => {
                 
               </div>
             </li>
-            <li>
-              <div className="item">
-                <h4 className="label">Phone</h4>
-                <h3>
-                  <a href="tel:+923369491727">+923369491727</a>
-                </h3>
-                <h4 className="lable">Email</h4>
-                <h3>
-                  <a href="mailto:artsbyyaseen@gmail.com">
-                  artsbyyaseen@gmail.com
-                  </a>
-                </h3>
-              </div>
-            </li>
-            <li>
-              <div className="item">
-                <h4 className="label">Office</h4>
-                <h3>Islamabad, Pakistan</h3>
-              </div>
-            </li>
+            
           </ul>
         </div>
         <div className="fn_cs_contact_form">

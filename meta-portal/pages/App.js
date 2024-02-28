@@ -4,7 +4,7 @@ import axios from 'axios';
 function App() {
   const [inputText, setInputText] = useState('');
   const [result, setResult] = useState('');
-  const API_ENDPOINT = "https://stablediffusionapi.com/api/v4/dreambooth";
+  const API_ENDPOINT = "https://modelslab.com/api/v6/realtime/text2img";
   const handleSubmit = async () => {
     try {
       const response = await axios.post(API_ENDPOINT, {
