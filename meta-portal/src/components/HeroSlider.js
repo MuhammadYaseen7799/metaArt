@@ -165,7 +165,7 @@ const HeroSlider = () => {
     "/img/Model/crystal-clear-xlv1.jpg",
     "/img/Model/SDXL.jpg",
   ];
-  const API_ENDPOINT = "https://stablediffusionapi.com/api/v4/dreambooth";
+  const API_ENDPOINT = "https://modelslab.com/api/v6/realtime/text2img";
   useEffect(() => {
     console.log("result", result);
   }, [result]);
@@ -179,24 +179,23 @@ const HeroSlider = () => {
         negative_prompt:
           "(text, watermark:2.0), gaussian noise, worst quality, ...", // Your negative prompt
         model_id: model_id,
-       
-  width: "512",
-  height: "512",
+        width: "1024",
+  height: "1024", 
   samples: "1",
   num_inference_steps: "30",
-  safety_checker: "no",
-  enhance_prompt: "yes",
+  safety_checker: false,
+  enhance_prompt: "true",
   seed: null,
-  guidance_scale: 7.5,
-  multi_lingual: "no",
-  panorama: "no",
-  self_attention: "no",
-  upscale: "no",
+  guidance_scale: 2,
+  multi_lingual: "false",
+  panorama: "false",
+  self_attention: "false",
+  upscale: "false",
   embeddings_model: null,
   lora_model: null,
-  tomesd: "yes",
+  tomesd: "true",
   clip_skip: "2",
-  use_karras_sigmas: "yes",
+  use_karras_sigmas: "true",
   vae: null,
   lora_strength: null,
   scheduler: "UniPCMultistepScheduler",
