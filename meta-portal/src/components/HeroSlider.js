@@ -380,7 +380,7 @@ const HeroSlider = () => {
         {/* !Slider */}
         {/* Description */}
         <div
-          style={{
+          style={{ //BOX
             backgroundColor: "white",
             opacity: "0.8",
             padding: "10px",
