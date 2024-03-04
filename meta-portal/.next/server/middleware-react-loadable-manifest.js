@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"..\\\\src\\\\components\\\\FunFacts.js -> ./Counter\":{\"id\":\"..\\\\src\\\\components\\\\FunFacts.js -> ./Counter\",\"files\":[\"static/chunks/src_components_Counter_js.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST='{"..\\\\src\\\\components\\\\FunFacts.js -> ./Counter":{"id":2612,"files":["static/chunks/211.2e6fbd4011e231a5.js"]}}';
