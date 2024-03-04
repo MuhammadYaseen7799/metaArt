@@ -13,9 +13,6 @@ const Contact = () => {
           <ul>
             <li>
               <div className="item">
-                <p>
-                 Welcome to our Contact Us page! We value your feedback, inquiries, and suggestions. Feel free to reach out to us through any of the methods below, and we'll be glad to assist you.
-                </p>
                 
               </div>
             </li>
@@ -66,7 +63,7 @@ const Contact = () => {
                       <img src="/svg/checked.svg" alt="" className="fn__svg" />
                     </span>
                     <p>
-                      I’m okay with getting emails and having that activity
+                      im okay with getting emails and having that activity
                       tracked to improve my experience.
                     </p>
                   </label>
