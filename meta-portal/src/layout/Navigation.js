@@ -11,13 +11,13 @@ const Navigation = ({ navigation, navigationToggle }) => {
         className={`metaportal_fn_leftnav_closer ${navigation ? "active" : ""}`}
       />
       <div className={`metaportal_fn_leftnav ${navigation ? "active" : ""}`}>
-        <a
+      <Link
           href="#"
           className="fn__closer"
           onClick={() => navigationToggle(false)}
         >
           <span />
-        </a>
+          </Link>
         <div className="navbox">
           <div className="nav_holder">
             {/* For JS */}
@@ -31,15 +31,15 @@ const Navigation = ({ navigation, navigationToggle }) => {
               }}
             >
               <li>
-                <a href="/#home" onClick={() => navigationToggle(false)}>
+              <Link href="/#home" onClick={() => navigationToggle(false)}>
                   <span className="creative_link">Home</span>
-                </a>
+                  </Link>
               </li>
 
               <li>
-                <a href="/blog" onClick={() => navigationToggle(false)}>
+              <Link href="/blog" onClick={() => navigationToggle(false)}>
                   <span className="creative_link">Blog</span>
-                </a>
+                  </Link>
               </li>
             </ul>
           </div>
@@ -47,61 +47,61 @@ const Navigation = ({ navigation, navigationToggle }) => {
             <div className="copyright">
               <p>
                 Designed &amp; Developed by{" "}
-                <a
+                <Link
                   href="https://mail.google.com/mail/u/0/h/"
                   target="_blank"
                   rel="noreferrer"
                 >
                   ArtsByYaseen
-                </a>
+                  </Link>
               </p>
             </div>
             <div className="social_icons">
               <ul>
                 <li>
-                  <a href="#">
+                <Link href="#">
                     <img
                       src="/svg/social/twitter-1.svg"
                       alt=""
                       className="fn__svg"
                     />
-                  </a>
+                 </Link>
                 </li>
                 <li>
-                  <a href="#">
+                <Link href="#">
                     <img
                       src="/svg/social/facebook-1.svg"
                       alt=""
                       className="fn__svg"
                     />
-                  </a>
+                 </Link>
                 </li>
                 <li>
-                  <a href="#">
+                <Link href="#">
                     <img
                       src="/svg/social/instagram-1.svg"
                       alt=""
                       className="fn__svg"
                     />
-                  </a>
+                </Link>
                 </li>
                 <li>
-                  <a href="#">
+                <Link href="#">
                     <img
                       src="/svg/social/pinterest-1.svg"
                       alt=""
                       className="fn__svg"
                     />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                <Link href="#">
                     <img
                       src="/svg/social/behance-1.svg"
                       alt=""
                       className="fn__svg"
                     />
-                  </a>
+             </Link>
                 </li>
               </ul>
             </div>

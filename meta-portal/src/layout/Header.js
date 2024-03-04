@@ -46,7 +46,7 @@ const Header = ({ walletToggle, navigationToggle }) => {
               }}
             >
               <li>
-                <a href="/#home" onClick={() => navigationToggle(false)}>
+              <Link href="/#home" onClick={() => navigationToggle(false)}>
                   <span
                     className="creative_link"
                     style={{
@@ -55,44 +55,44 @@ const Header = ({ walletToggle, navigationToggle }) => {
                   >
                     Home
                   </span>
-                </a>
+                  </Link>
               </li>
 
               <li>
-                <a
+              <Link
                   href="/#about"
                   className="creative_link"
                   onClick={() => navigationToggle(false)}
                 >
                   <span className="creative_link">Plans</span>
-                </a>
+                  </Link>
               </li>
               <li>
-                <a
+              <Link
                   href="/#collection"
                   className="creative_link"
                   onClick={() => navigationToggle(false)}
                 >
                   <span className="creative_link">Collection</span>
-                </a>
+                  </Link>
               </li>
               <li>
-                <a
+              <Link
                   href="/#news"
                   className="creative_link"
                   onClick={() => navigationToggle(false)}
                 >
                   <span className="creative_link">Blog</span>
-                </a>
+                  </Link>
               </li>
               <li>
-                <a
+              <Link
                   href="/#contact"
                   className="creative_link"
                   onClick={() => navigationToggle(false)}
                 >
                   <span className="creative_link">Contact</span>
-                </a>
+                  </Link>
               </li>
             </ul>
           </div>
