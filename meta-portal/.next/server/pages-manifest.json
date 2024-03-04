@@ -1,1 +1,1 @@
-{"/_app":"pages/_app.js","/_error":"pages/_error.js","/_document":"pages/_document.js","/api/hello":"pages/api/hello.js","/404":"pages/404.html","/App":"pages/App.html","/collection":"pages/collection.html","/blog":"pages/blog.html","/":"pages/index.html","/nft/[id]":"pages/nft/[id].html"}
+{"/_app":"pages/_app.js","/_document":"pages/_document.js","/404":"pages/404.html","/App":"pages/App.html","/_error":"pages/_error.js","/collection":"pages/collection.html","/blog":"pages/blog.html","/api/hello":"pages/api/hello.js","/":"pages/index.html","/nft/[id]":"pages/nft/[id].html"}
